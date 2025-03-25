@@ -1,0 +1,14 @@
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Redirigir todas las solicitudes que no sean a archivos o directorios existentes a wsgi.py
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /wsgi.py/$1 [L]
+
+# Configuración de PHP (por si acaso)
+php_flag display_errors off
+php_value post_max_size 64M
+php_value upload_max_filesize 64M
+php_value max_execution_time 300
+php_value max_input_time 300
